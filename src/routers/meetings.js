@@ -1,32 +1,22 @@
 const express = require('express')
 const router = express.Router()
+const { userId } = require('../../config')
 
-const meetingService = require('../services/meetings')
+const meetingService = require('../services/meeting.service')
 
 router.get('/', async (req, res) => {
-  const meetings = await meetingService.getMeetings()
-  const users = await meetingService.getUsers()
-
-  let sum = []
-  meetings.forEach(meeting => {
-    sum = [
-      ...sum,
-      ...meeting
-    ]
-  })
-  
-  res.render('meetings', {users, meetings: sum})
-})
-
-router.get('/:userid', async (req, res) => {
-  const meetings = await meetingService.getUserMeetings(req.params.userid)
-
-  return res.json(meetings)
+  const meetings = await meetingService.getMeetings(userId)
+  res.json(meetings.meetings).end()
 })
 
 router.post('/', async (req, res) => {
-  const result = await meetingService.createMeeting()
+  const { topic, duration, start_time } = req.body
+  const result = await meetingService.createMeeting(userId, topic, start_time, duration)
+  return res.send(result)
+})
 
+router.delete('/:id', async (req, res) => {
+  const result = await meetingService.deleteMeeting(req.params.id)
   return res.send(result)
 })
 

@@ -1,5 +1,5 @@
 const axios = require('../plugins/axios')
-const CreateMeetingDto = require('../dtos/CreateMeeting.dto')
+const CreateMeetingDto = require('../src/dtos/Meeting.dto')
 const { userId } = require('../config')
 
 function getUsers() {

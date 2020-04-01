@@ -1,7 +1,7 @@
 const chance = require('chance').Chance()
 
 // Yeni bir Meeting oluşturulurken kullanılacak data.
-class CreateMeetingDTO {
+class MeetingDTO {
   constructor(topic, start_time, duration) {
     this.topic = topic
     this.start_time = start_time
@@ -20,4 +20,4 @@ class CreateMeetingDTO {
   }
 }
 
-module.exports = CreateMeetingDTO
+module.exports = MeetingDTO
