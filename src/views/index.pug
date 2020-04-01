@@ -1,0 +1,87 @@
+extends layout.pug
+
+block content
+  div#app(class="m-4", v-cloak)
+    div(
+      v-for="meeting in meetings",
+      v-bind:key="meeting.id",
+      class="flex items-center"
+    )
+      button(
+        v-on:click="deleteMeeting(meeting.id)"
+        class="border p-2 font-semibold hover:bg-red-500 hover:text-white mr-2"
+      ) &times;
+      span(
+        class="mr-4 font-semibold"
+      ) {{meeting.topic}}
+      span {{meeting.start_time}}
+
+    form(
+      v-on:submit="createMeeting($event)",
+      class="mt-4"
+    )
+      input(
+        type="text",
+        v-model="topic",
+        placeholder="topic",
+        class="border px-2 py-1 mr-2")
+      input(
+        type="number",
+        v-model="duration",
+        placeholder="duration",
+        class="border px-2 py-1 mr-2")
+      input(
+        type="date",
+        v-model="startTime",
+        placeholder="start_time",
+        class="border px-2 py-1 mr-2")
+      button(
+        type="submit",
+        class="border px-2 py-1 hover:bg-green-500 hover:text-white"
+      ) Kaydet
+
+    div(class="border p-2 flex items-center")
+      input(v-model="startTime", class="border")
+
+    div(class="mt-2")
+      table(class="w-full")
+        tbody
+          tr
+            td(class="py-1 border w-40 text-center") 01.04.2020 08:00
+            td(class="py-1 px-1 border")
+              span(class="bg-teal-500 text-white rounded-md px-2 py-1 text-sm hover:bg-teal-400 mr-1") Sefa Koç Teleterapi - 08:15
+              span(class="bg-teal-500 text-white rounded-md px-2 py-1 text-sm hover:bg-teal-400") Şafak Aybütüğ Teleterapi - 08:30
+          tr
+            td(class="py-1 border w-40 text-center") 01.04.2020 09:00
+            td(class="py-1 px-1 border")
+              span(class="bg-teal-500 text-white rounded-md px-2 py-1 text-sm hover:bg-teal-400") Kerem Dinçer Teleterapi - 09:45
+          tr
+            td(class="py-1 border w-40 text-center") 01.04.2020 10:00
+            td(class="py-1 px-1 border")
+          tr
+            td(class="py-1 border w-40 text-center") 01.04.2020 11:00
+            td(class="py-1 px-1 border")
+          tr
+            td(class="py-1 border w-40 text-center") 01.04.2020 12:00
+            td(class="py-1 px-1 border")
+          tr
+            td(class="py-1 border w-40 text-center") 01.04.2020 13:00
+            td(class="py-1 px-1 border")
+          tr
+            td(class="py-1 border w-40 text-center") 01.04.2020 14:00
+            td(class="py-1 px-1 border")
+          tr
+            td(class="py-1 border w-40 text-center") 01.04.2020 15:00
+            td(class="py-1 px-1 border")
+          tr
+            td(class="py-1 border w-40 text-center") 01.04.2020 16:00
+            td(class="py-1 px-1 border")
+          tr
+            td(class="py-1 border w-40 text-center") 01.04.2020 17:00
+            td(class="py-1 px-1 border")
+          tr
+            td(class="py-1 border w-40 text-center") 01.04.2020 18:00
+            td(class="py-1 px-1 border")
+
+block scripts
+  script(src="/js/index-page.js")
